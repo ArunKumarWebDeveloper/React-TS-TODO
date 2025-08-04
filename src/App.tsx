@@ -8,17 +8,17 @@ import {
   Button,
 } from "@mui/material";
 import { useEffect, useState } from "react";
-import TodoItem from "./components/Todoitem";
+import Todoitem from "./components/TodoItem";
 import { getTodos, saveTodos } from "./Utils/Features";
 
-type TodoItemType = {
+type TodoitemType = {
   id: string;
   title: string;
   isCompleted: boolean;
 };
 
 const App = () => {
-  const [todos, setTodos] = useState<TodoItemType[]>(getTodos());
+  const [todos, setTodos] = useState<TodoitemType[]>(getTodos());
   const [title, setTitle] = useState<string>("");
 
   const completeHandler = (id: string): void => {
@@ -42,7 +42,7 @@ const App = () => {
 
   const submitHandler = (): void => {
     if (title.trim() !== "") {
-      const newTodo: TodoItemType = {
+      const newTodo: TodoitemType = {
         title: title.trim(),
         isCompleted: false,
         id: `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
@@ -69,7 +69,7 @@ const App = () => {
           <Typography align="center">No tasks yet. Add one!</Typography>
         ) : (
           todos.map((todo) => (
-            <TodoItem
+            <Todoitem
               key={todo.id}
               todo={todo}
               deleteHandler={deleteHandler}
